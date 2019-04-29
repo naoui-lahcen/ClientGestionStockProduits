@@ -1,6 +1,12 @@
 
-  <h2>
-    Bonjour le monde (appcomponent)
-  </h2>
-  <app-produit></app-produit>
+  <div class="row">
+    <div class="col-lg-2" *ngIf="showFideSideBar">
+        <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-lg-10">
+      <button (click)="showFideSideBar = !showFideSideBar;">Sow/hide</button>
+        <app-navbar></app-navbar>
+        <app-content></app-content>
+      </div>
+  </div>
   

@@ -9,7 +9,9 @@ import {Produit} from '../shared/produit';
 })
 export class ProduitComponent implements OnInit {
   produits: Produit[];
-  constructor(private produitService: ProduitMockService) { }
+  constructor(private produitService: ProduitMockService) { 
+    
+  }
 
   ngOnInit() {
     this.produits=this.produitService.getProduits();
