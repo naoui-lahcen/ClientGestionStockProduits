@@ -50,7 +50,7 @@ export class ProduitComponent implements OnInit {
   }
 
 
-  addProduit(produit: Produit){
+  addProduit(produit: Produit){ debugger;
     const p = this.produitForm.value;
     this.produitService.addProduit(p).subscribe(
       res => {
@@ -60,11 +60,21 @@ export class ProduitComponent implements OnInit {
     );
   }
 
-  updateProduit(){
+  updateProduit(){ debugger;
     this.produitService.updateProduit(this.selectedProduit)
     .subscribe(
       res => {
         this.initProduit();
+        this.loadProduit();
+      }
+    );
+  }
+
+  deleteProduit(){ debugger;
+    this.produitService.deleteProduit(this.selectedProduit.ref)
+    .subscribe(
+      res => {
+        this.selectedProduit = new Produit();
         this.loadProduit();
       }
     );
