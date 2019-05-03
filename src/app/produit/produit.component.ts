@@ -15,20 +15,32 @@ export class ProduitComponent implements OnInit {
 
   produitForm: FormGroup;
 
+  operation : String = "add";
+
+  selectedProduit : Produit;
+
   /**  constructor(private produitService: ProduitMockService,private fb: FormBuilder) {
  */
+
+
   constructor(private produitService: ProduitService,private fb: FormBuilder) {
-    this.produitForm = this.fb.group({
-      ref: ['',Validators.required],
-      quantite: '',
-      prixUnitaire: ''
-    }); 
+    this.createForm();
     
   }
 
   ngOnInit() {
     this.loadProduit();
+    this.initProduit();
   }
+
+  createForm (){
+    this.produitForm = this.fb.group({
+      ref: ['',Validators.required],
+      quantite: '',
+      prixUnitaire: ''
+    }); 
+  }
+
   loadProduit(){
     this.produitService.getProduits().subscribe(
       data => {this.produits = data},
@@ -36,4 +48,38 @@ export class ProduitComponent implements OnInit {
       () => {console.log('loadng produits was done.')}
     );
   }
+
+
+  addProduit(produit: Produit){
+    const p = this.produitForm.value;
+    this.produitService.addProduit(p).subscribe(
+      res => {
+        this.initProduit();
+        this.loadProduit();
+      }
+    );
+  }
+
+  updateProduit(){
+    this.produitService.updateProduit(this.selectedProduit)
+    .subscribe(
+      res => {
+        this.initProduit();
+        this.loadProduit();
+      }
+    );
+  }
+
+initProduit(){
+  this.selectedProduit = new Produit();
+  this.createForm();
+}
+
+
+
+
+
+
+
+
 }
