@@ -14,6 +14,9 @@ import { AppRoutingModule } from './app.routing.module';
 import { ProduitService } from './produit/produit.service';
 
 import {ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { AppService } from './app.service';
 
 
 @NgModule({
@@ -23,7 +26,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     NavbarComponent,
     SidebarComponent,
     ContentComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [ProduitMockService,ProduitService],
+  providers: [ProduitMockService,
+              ProduitService,AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
