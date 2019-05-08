@@ -1,3 +1,11 @@
-<p>
-  login works!
-</p>
+<div>
+  <form [formGroup] = "loginForm" (submit)="login()">
+    <div >
+      <label>Username:</label>
+      <input type="text" id="username" formControlName="username" [(ngModel)]="credentials.username"/>
+      <label>Password:</label>
+      <input type="password" id="password" formControlName="password" [(ngModel)]="credentials.password"/>
+    </div>
+    <button type="submit">Log In</button>
+  </form>
+</div>
